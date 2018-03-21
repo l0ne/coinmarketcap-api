@@ -4,6 +4,7 @@ const fetch = require('node-fetch')
 const qs = require('qs')
 
 const BASE_URL = 'https://api.coinmarketcap.com'
+const GRAPHS2_URL = 'https://graphs2.coinmarketcap.com'
 
 class CoinMarketCap {
   constructor ({ version = 'v1' } = {}) {
@@ -12,6 +13,7 @@ class CoinMarketCap {
       'Accept-Charset': 'utf-8'
     }
     this.url = `${BASE_URL}/${version}`
+    this.graph_url = `${GRAPHS2_URL}/${version}`
   }
 
   /**
@@ -37,6 +39,16 @@ class CoinMarketCap {
       url: `${this.url}/ticker${currency ? `/${currency}/`.toLowerCase() : ''}`,
       headers: this.headers,
       query: { start, convert, limit }
+    })
+  }
+
+  getCharts (args = {}) {
+    const { start, end, convert, currency } = args
+
+    return createRequest({
+        url: `${this.graph_url}/currencies${currency ? `/${currency}/`.toLowerCase() : '' + start ? `/${start}/`.toLowerCase() : '' + end ? `/${end}/`.toLowerCase() : ''}`,
+        headers: this.headers,
+        query: { convert }
     })
   }
 
