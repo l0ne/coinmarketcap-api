@@ -10,7 +10,8 @@ class CoinMarketCap {
   constructor ({ version = 'v1' } = {}) {
     this.headers = {
       Accept: 'application/json',
-      'Accept-Charset': 'utf-8'
+      'Accept-Charset': 'utf-8',
+      'Access-Control-Allow-Origin': "*"
     }
     this.url = `${BASE_URL}/${version}`
     this.graph_url = `${GRAPHS2_URL}`
