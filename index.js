@@ -49,7 +49,8 @@ class CoinMarketCap {
       url: `${this.graph_url}/currencies${
         currency ? `/${currency}/`.toLowerCase() : ''
       }${start ? `${start}/` : ''}${end ? `${end}/` : ''}`,
-      headers: this.headers
+      headers: this.headers,
+      query: null
     })
   }
 
