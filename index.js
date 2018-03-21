@@ -43,12 +43,11 @@ class CoinMarketCap {
   }
 
   getCharts (args = {}) {
-    const { start, end, convert, currency } = args
+    const { currency, start, end } = args
 
     return createRequest({
-        url: `${this.graph_url}/currencies${currency ? `/${currency}/`.toLowerCase() : '' + start ? `/${start}/`.toLowerCase() : '' + end ? `/${end}/`.toLowerCase() : ''}`,
-        headers: this.headers,
-        query: { convert }
+      url: `${this.graph_url}/currencies${currency ? `/${currency}/`.toLowerCase() : '' }${start ? `/${start}/` : ''}${end ? `/${end}/` : ''}`,
+      headers: this.headers
     })
   }
 
