@@ -13,7 +13,7 @@ class CoinMarketCap {
       'Accept-Charset': 'utf-8'
     }
     this.url = `${BASE_URL}/${version}`
-    this.graph_url = `${GRAPHS2_URL}/${version}`
+    this.graph_url = `${GRAPHS2_URL}`
   }
 
   /**
@@ -46,7 +46,9 @@ class CoinMarketCap {
     const { currency, start, end } = args
 
     return createRequest({
-      url: `${this.graph_url}/currencies${currency ? `/${currency}/`.toLowerCase() : '' }${start ? `/${start}/` : ''}${end ? `/${end}/` : ''}`,
+      url: `${this.graph_url}/currencies${
+        currency ? `/${currency}/`.toLowerCase() : ''
+      }${start ? `${start}/` : ''}${end ? `${end}/` : ''}`,
       headers: this.headers
     })
   }
