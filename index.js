@@ -11,7 +11,7 @@ class CoinMarketCap {
     this.headers = {
       Accept: 'application/json',
       'Accept-Charset': 'utf-8',
-      'Access-Control-Allow-Origin': "*"
+      'Access-Control-Allow-Origin': '*'
     }
     this.url = `${BASE_URL}/${version}`
     this.graph_url = `${GRAPHS2_URL}`
@@ -47,9 +47,8 @@ class CoinMarketCap {
     const { currency, start, end } = args
 
     return createRequest({
-      url: `${this.graph_url}/currencies${
-        currency ? `/${currency}/`.toLowerCase() : ''
-      }${start ? `${start}/` : ''}${end ? `${end}/` : ''}`,
+      url: `${this.graph_url}/currencies${currency ? `/${currency}/`.toLowerCase() : ''}
+      ${start ? `${start}/` : ''}${end ? `${end}` : ''}`,
       headers: this.headers,
       query: null
     })
